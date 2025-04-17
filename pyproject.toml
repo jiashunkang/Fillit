@@ -1,0 +1,17 @@
+[project]
+name = "fillit"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "browser-use",
+    "docling>=2.29.0",
+    "gradio>=5.25.0",
+    "httpx>=0.28.1",
+    "mcp[cli]>=1.6.0",
+    "playwright>=1.51.0",
+]
+
+[tool.uv.sources]
+browser-use = { git = "https://github.com/jiashunkang/Browser-use-modified.git" }

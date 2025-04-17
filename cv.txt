@@ -1,0 +1,66 @@
+{
+  "personal_info": {
+    "name": "Sponge Jia",
+    "email": "sponge77@gmail.com",
+    "phone": "+46-1324132741",
+    "address": "Shanghai, China"
+  },
+  "education": [
+    {
+      "school": "ShanghaiTech University (Shanghai Ranking #42 in China)",
+      "degree": "Bachelor of Engineering, Computer Science and Technology",
+      "year": "2021.9 - 2025.6 (Expected)"
+    }
+  ],
+  "experience": [
+    {
+      "company": "Shanghai Alcatel Network Support Systems Company",
+      "role": "Software Engineer Intern",
+      "duration": "2024.1 - 2024.4",
+      "description": [
+        "Conducted the requirement analysis for an authorization platform for web scanning service.",
+        "Implemented CRUD interfaces and backend logic using Spring Boot and MyBatis, covering 8 components including customer management and order management. Enabled online editing and exporting of table content with EasyExcel.",
+        "Gained proficiency in tools such as Jenkins (for continuous integration and deployment), Jira (for project management and issue tracking), and GitLab (for version control and collaborative software development)."
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "Aethernet: Building a Network Through Sound",
+      "duration": "2024.10 - 2024.12",
+      "description": "Team Leader",
+      "bullet_points": [
+        "Designed and implemented a fully functional network connected by audio cables in Go, covering layers from physical to application",
+        "Developed MAC-layer mechanisms, including ACK and CSMA/CD, transfer 6KB data in 10 seconds.",
+        "Built a custom router with Gopacket module to forward IP packets between Aethernet and the Internet, supporting NAT and routing.",
+        "Enabled web browsing on Aethernet nodes by implementing a local DNS server and a simplified TCP handshake and sliding window scheme"
+      ]
+    },
+    {
+      "name": "Data Visualization System: Life Pattern Analysis in ShanghaiTech City",
+      "duration": "2024.3 - 2024.6",
+      "description": "Designer and Developer",
+      "bullet_points": [
+        "Designed and implemented an interactive city data visualization platform using D3.js, Vue.js, and Node.js, on a 20GB dataset, showcasing urban dynamics like economic trends, and traffic flow",
+        "Developed multiple interactive features to enhance user engagement, including dynamic visualizations, data filtering, hover effects, calendars, and a slider.",
+        "Optimized response time by pre-processing data and implementing linear interpolation."
+      ]
+    },
+    {
+      "name": "Elevator Scheduling Software",
+      "duration": null,
+      "description": "Team Leader",
+      "bullet_points": [
+        "Cooperated with domain expert in requirement engineering: Draw UML diagram including use case diagrams, activity diagrams, and class diagrams; Record both functional and non-functional requirements.",
+        "Implemented elevator scheduler for a 4-level building with 2 elevators, boosting the efficiency by 80% by enabling free-rider. Implemented a GUI with PyQT5.",
+        "Validated the system comprehensively: Write unit test and integrated test with 100% branch coverage. Do functional test considering 11 use cases. Leverage UPPAAL to validate the system ensuring no safety risk."
+      ]
+    }
+  ],
+  "skills": [
+    "Chinese(Native)",
+    "English: IELTS 7.5",
+    "Programming Languages: C, C++, Java, Python, Go, JavaScript, MATLAB, RISC-V Assembly",
+    "Tools & Frameworks : Git, Docker, SQL, Node.js, Vue.js, SpringBoot, MyBatis."
+  ]
+}
