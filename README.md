@@ -62,7 +62,7 @@ Download and install the latest version of Claude Desktop from the official webs
   }
 }
 ```
-### Project Dependencies
+### 3. Project Dependencies
 ```
 # Install dependencies
 uv sync
@@ -70,10 +70,17 @@ uv sync
 
 ```
 # Activate venv
-.venv/Scripts/activate
+.venv\Scripts\activate
 ```
 
 Remember to select venv as python interpreter  in VS Code
+
+### How to start
+```bash
+# Start chrome that enables cdp connection
+python start_chrome.py 
+```
+
 
 ## For Developers
 
@@ -96,7 +103,7 @@ To inspect and debug MCP tools:
 
 ```powershell
 cd path\to\Fillit
-.venv/Scripts/activate
+.venv\Scripts\activate
 mcp dev mcpserver.py
 ```
 
