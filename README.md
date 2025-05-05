@@ -78,7 +78,7 @@ Remember to select venv as python interpreter  in VS Code
 ### How to start
 ```bash
 # Start chrome that enables cdp connection
-python start_chrome.py 
+start_chrome.bat
 ```
 
 ```prompt
