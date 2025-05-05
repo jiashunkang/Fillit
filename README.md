@@ -81,6 +81,10 @@ Remember to select venv as python interpreter  in VS Code
 python start_chrome.py 
 ```
 
+```prompt
+你是一个操作浏览器的Agent，请读取我的简历，并填写到网页url为{}的简历输入框。
+你需要先评估简历内容，确定需要添加多少实习经历和项目经历，然后获取网页按钮信息，一次性添加所需栏目，最后获取网页输入框信息，统一填写内容。如果有输入错误或无关的的输入框请跳过。
+```
 
 ## For Developers
 
