@@ -11,3 +11,4 @@ wheels/
 
 # Local Chrome User Data
 ChromeUserData
+!ChromeUserData/CHROME_USER_DATA_GENERATE_HERE
