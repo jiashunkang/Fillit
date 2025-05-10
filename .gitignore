@@ -10,5 +10,5 @@ wheels/
 .venv
 
 # Local Chrome User Data
-ChromeUserData
+ChromeUserData/*
 !ChromeUserData/CHROME_USER_DATA_GENERATE_HERE
