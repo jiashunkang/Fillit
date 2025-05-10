@@ -7,7 +7,9 @@ setlocal enabledelayedexpansion
 :: Configure paths
 set "CHROME_PATH=C:\Program Files\Google\Chrome\Application\chrome.exe"
 set DEFAULT_PORT=9222
-set "DEFAULT_DATA_DIR=%LOCALAPPDATA%\Google\Chrome\User Data"
+:: EDIT THIS LINE TO YOUR DESIRED PROFILE DIRECTORY
+:: set "DEFAULT_DATA_DIR=C:\Users\YourUsername\AppData\Local\Google\Chrome\User Data"
+set "DEFAULT_DATA_DIR=C:\Users\jiashunkang\Desktop\Fillit\ChromeUserData"
 
 :: Verify Chrome exists
 if not exist "%CHROME_PATH%" (
