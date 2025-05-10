@@ -11,6 +11,7 @@ from jsutils import get_nearest_text_from_label_span_div
 logger = logging.getLogger(__name__)
 
 class BrowserInstance:
+
     def __init__(self):
         self.playwright:Playwright = None
         self.browser:Browser = None
@@ -24,10 +25,16 @@ class BrowserInstance:
         self.playwright = await async_playwright().start()
         self.browser:Browser = await self.playwright.chromium.connect_over_cdp(cdp_url)
         self.default_context:BrowserContext = self.browser.contexts[0]
-        self.page = await self.default_context.new_page()
         logger.info(f"Connected to browser at {cdp_url}")
         return self.default_context
     
+    async def get_existing_page(self, url:str)->Page:
+        for page in self.default_context.pages:
+            if page.url == url:
+                await page.bring_to_front()
+                return page
+        return None         
+
     async def get_dom_service(self, page: Page):
         """获取页面的DOM服务"""
         if not self.dom_service:
@@ -60,7 +67,7 @@ class BrowserInstance:
         用于LLM判断点击或输入操作
         """
         dom_service = await self.get_dom_service(page)
-        dom_state: DOMState = await dom_service.get_clickable_elements(highlight_elements=False,viewport_expansion=-1)
+        dom_state: DOMState = await dom_service.get_clickable_elements(highlight_elements=True,viewport_expansion=int(-1))
         
         clickable_items = []
         input_items = []

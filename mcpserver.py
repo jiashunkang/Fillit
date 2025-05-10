@@ -1,5 +1,7 @@
 import json
+from typing import List
 from mcp.server.fastmcp import FastMCP
+from mcp.server.fastmcp.prompts.base import Message,UserMessage, AssistantMessage
 from mybrowser import BrowserInstance
 import asyncio
 import logging
@@ -26,14 +28,21 @@ def refresh_clickable_items():
 
 # 初始化默认去到某个简历网址
 @mcp.tool()
-async def initialize_browser(url:str= "https://jobs.mihoyo.com/#/campus/resume/position/edit/5906"):
-    """异步初始化浏览器实例并前往url的页面"""
+async def initialize_page(url:str= "https://jobs.mihoyo.com/#/campus/resume/position/edit/5906"):
+    """异步连接浏览器,并前往url的页面"""
     global browser_instance
     global page
-    browser_instance = BrowserInstance()
-    context = await browser_instance.connect()
+    context = None
+    if browser_instance is None:
+        browser_instance = BrowserInstance()
+        context = await browser_instance.connect()
+    existing_page = await browser_instance.get_existing_page(url)
+    # 优先查看当前浏览器有没有该页面
+    if existing_page is not None:
+        page = existing_page
+        return
     if page is None:
-        print("页面为空，创建新页面")
+        # 页面为空，创建新页面
         page = await context.new_page()
     print(f"当前页面URL: {page.url}")
     if page.url != url:
@@ -154,6 +163,14 @@ async def get_resume_content() -> str:
         # 去除换行符和空格
         resume_content = f.read().replace("\n", "").replace(" ", "")
     return json.dumps(resume_content, ensure_ascii=False)
+
+@mcp.prompt()
+def fill_resume_start(url: str) -> List[Message]:
+    """Initiates a debugging help session."""
+    return [
+        UserMessage(f"你是一个操作浏览器的Agent，请读取我的简历，并填写到网页url为\"{url}\"的简历输入框。当点击了按钮导致添加了栏目，你需要重新读取变化后的DOM元素。我希望你在最初先决定好添加几次栏目，最后再统一填写，只需要调用一次读取DOM元素的函数。"),
+        AssistantMessage("我会先评估简历内容，确定需要添加多少实习经历和项目经历，然后获取网页按钮信息，一次性添加所需栏目，最后统一填写内容。由于网络浏览器限制，如果有输入错误或无关的的输入框我会跳过")
+    ]
 
 async def main():
     global browser_instance
