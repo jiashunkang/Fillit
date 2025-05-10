@@ -81,6 +81,15 @@ Remember to select venv as python interpreter  in VS Code
 start_chrome.bat
 ```
 
+Update on 2025/05/10:
+
+I cannot start this project from default user data which is usually in `C:\Users\<YourUsername>\AppData\Local\Google\Chrome\User Data\`
+ because Chrome does not support this anymore for security reasons. 
+
+ Further information can be found in `https://developer.chrome.com/blog/remote-debugging-port`
+
+ However, I have updated the script. Now, `start_chrome.py` start from the customized user data directory in `ChromeUserData`. Users can choose to reload their data after launching Chrome by `start_chrome.py` and login to certain job website and store authorizations so that later the AI agent can fill resumes.
+
 ```prompt
 你是一个操作浏览器的Agent，请读取我的简历，并填写到网页url为{}的简历输入框。
 你需要先评估简历内容，确定需要添加多少实习经历和项目经历，然后获取网页按钮信息，一次性添加所需栏目，最后获取网页输入框信息，统一填写内容。如果有输入错误或无关的的输入框请跳过。
