@@ -15,4 +15,4 @@ dependencies = [
 ]
 
 [tool.uv.sources]
-browser-use = { git = "https://github.com/jiashunkang/Browser-use-modified.git" }
+browser-use = { git = "https://github.com/jiashunkang/Browser-use-modified.git" ,rev = "main"}
