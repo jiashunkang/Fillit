@@ -8,9 +8,9 @@ from langchain.output_parsers import PydanticOutputParser
 from models import ResumeData  # 导入 自定义的Pydantic模型
 import time
 
-client = OpenAI(api_key=os.getenv("ACCESSKEY_SILICONFLOW"), base_url="https://api.siliconflow.cn/v1")
+client = OpenAI(api_key="sk-runqvqjtjnoyurszseqqbdupuciqzsopahjhculttowxyvud", base_url="https://api.siliconflow.cn/v1")
 llm = ChatOpenAI(model_name="Pro/deepseek-ai/DeepSeek-V3-1226",
-                 api_key=os.getenv("ACCESSKEY_SILICONFLOW"),
+                 api_key="sk-runqvqjtjnoyurszseqqbdupuciqzsopahjhculttowxyvud",
                  base_url = "https://api.siliconflow.cn/v1",
                  max_completion_tokens=4096)
 # 使用 PydanticOutputParser 解析 LLM 输出
