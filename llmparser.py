@@ -37,7 +37,7 @@ def parse_resume_with_langchain(resume_text: str) -> ResumeData:
     response = llm.invoke(formatted_prompt)
     # print(response)
     # Store json to file, set local time as file name
-    with open(f"./scratch/{int(time.time()*1000)}.txt", "w") as f:
+    with open(f"cv.txt", "w") as f:
         f.write(response.content.replace("```json", "").replace("```", "").strip())
     return parser.parse(response.content.replace("```json", "").replace("```", "").strip())  # 自动转换为 Pydantic 对象
 
