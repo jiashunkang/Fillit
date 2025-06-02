@@ -92,10 +92,47 @@ python webui.py
 In the Gradio App, only Deepseek and Azure OpenAI works now. Leave all the settings blank so that default settings in .env will be applied. Then click `Set LLM` and then click `Connect`, and finally you can chat with the LLM to let it call mcp tools and fill resume.
 
 ### Recommend Prompt
-```prompt
-你是一个操作浏览器的Agent，请读取我的简历，并填写到网页url为{}的简历输入框。
-你需要先评估简历内容，确定需要添加多少实习经历和项目经历，然后获取网页按钮信息，一次性添加所需栏目，最后获取网页输入框信息，统一填写内容。如果有输入错误或无关的的输入框请跳过。
+```markdown
+你是一个专业的浏览器自动化Agent，具备以下MCP工具来操作网页：
+
+**可用工具说明：**
+- `initialize_page(url)`: 打开浏览器并导航到指定网页
+- `get_resume_content()`: 读取用户的简历内容
+- `get_webpage_button()`: 获取当前页面所有可点击按钮的信息（包括"添加实习经历"、"添加项目经历"等按钮）
+- `get_webpage_input()`: 获取当前页面所有输入框的信息（包括姓名、学校、公司等输入框）
+- `click_index(index)`: 点击指定索引号的按钮
+- `fill_index_with_content(index, content)`: 在指定索引号的输入框中填入内容
+
+**任务目标：**
+请帮我自动填写简历到 https://jobs.mihoyo.com/#/campus/resume/position/edit/6018
+
+**执行步骤（请严格按此顺序）：**
+
+1. **初始化和分析阶段**
+   - 使用 `initialize_page()` 打开目标网页
+   - 使用 `get_resume_content()` 读取我的简历内容
+   - 分析简历，统计实习经历数量和项目经历数量
+
+2. **DOM结构添加阶段**
+   - 使用 `get_webpage_button()` 获取页面按钮信息
+   - 根据简历分析结果，找到"添加实习经历"和"添加项目经历"按钮
+   - 一次性点击足够次数的添加按钮（例如：如果有3个实习经历，就点击3次"添加实习经历"按钮）
+   - ⚠️ **重要**：每次点击后页面DOM会变化，所以要一次性添加完所有需要的栏目
+
+3. **内容填写阶段**
+   - 使用 `get_webpage_input()` 重新获取更新后的输入框信息
+   - 按照简历内容，使用 `fill_index_with_content()` 逐一填写所有输入框
+   - 填写顺序建议：个人信息 → 教育经历 → 实习经历 → 项目经历 → 技能等
+
+**注意事项：**
+- 如果某些输入框因为格式限制无法填写，请跳过并继续下一个
+- 在点击添加按钮改变DOM结构后，必须重新调用 `get_webpage_input()` 获取最新的输入框信息
+- 使用工具时请准确传递index参数，确保操作正确的元素
+- 填写内容时请根据输入框的描述信息匹配合适的简历内容
+
+**开始执行任务吧！**
 ```
+
 
 ## For Developers
 
