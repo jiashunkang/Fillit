@@ -393,7 +393,7 @@ def create_mcp_interface():
                 model_input = gr.Textbox(
                     label="Model/Deployment Name",
                     placeholder="e.g., gpt-4o, claude-3-5-sonnet-20241022",
-                    value="gpt-4o"
+                    value=""
                 )
         
         # 添加Azure OpenAI特定字段
@@ -408,7 +408,7 @@ def create_mcp_interface():
                 api_version_input = gr.Textbox(
                     label="API Version",
                     placeholder="2024-02-15-preview",
-                    value="2025-03-01-preview"
+                    value=""
                 )
         
         with gr.Row():
