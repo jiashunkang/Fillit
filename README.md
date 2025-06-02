@@ -29,7 +29,7 @@ You can verify the installation by running `uv --version`.
 
 ## Project Requirements
 
-### 1. Claude Desktop
+<!-- ### 1. Claude Desktop
 
 Download and install the latest version of Claude Desktop from the official website:
 
@@ -61,8 +61,8 @@ Download and install the latest version of Claude Desktop from the official webs
     }
   }
 }
-```
-### 3. Project Dependencies
+``` -->
+### 1. Project Dependencies
 ```
 # Install dependencies
 uv sync
@@ -76,20 +76,22 @@ uv sync
 Remember to select venv as python interpreter  in VS Code
 
 ### How to start
+First step is to start a chrome browser at port 9222.It will generate user data in  in `ChromeUserData` which is separate from your previous Chrome.
+
 ```bash
 # Start chrome that enables cdp connection
-start_chrome.bat
+python start_chrome.py
 ```
 
-Update on 2025/05/10:
+Then start the MCP Client (This is a Gradio App runs on port 7860)
+```bash
+# Start chrome that enables cdp connection
+python webui.py
+```
 
-I cannot start this project from default user data which is usually in `C:\Users\<YourUsername>\AppData\Local\Google\Chrome\User Data\`
- because Chrome does not support this anymore for security reasons. 
+In the Gradio App, only Deepseek and Azure OpenAI works now. Leave all the settings blank so that default settings in .env will be applied. Then click `Set LLM` and then click `Connect`, and finally you can chat with the LLM to let it call mcp tools and fill resume.
 
- Further information can be found in `https://developer.chrome.com/blog/remote-debugging-port`
-
- However, I have updated the script. Now, `start_chrome.py` start from the customized user data directory in `ChromeUserData`. Users can choose to reload their data after launching Chrome by `start_chrome.py` and login to certain job website and store authorizations so that later the AI agent can fill resumes.
-
+### Recommend Prompt
 ```prompt
 你是一个操作浏览器的Agent，请读取我的简历，并填写到网页url为{}的简历输入框。
 你需要先评估简历内容，确定需要添加多少实习经历和项目经历，然后获取网页按钮信息，一次性添加所需栏目，最后获取网页输入框信息，统一填写内容。如果有输入错误或无关的的输入框请跳过。
@@ -98,6 +100,7 @@ I cannot start this project from default user data which is usually in `C:\Users
 ## For Developers
 
 ### Project Structure
+Following are the files that have real function in the project. (Others are just test scripts)
 
 | File              | Description                                                             |
 |-------------------|-------------------------------------------------------------------------|
@@ -105,7 +108,7 @@ I cannot start this project from default user data which is usually in `C:\Users
 | `mybrowser.py`    | Wrapper for the browser interface (based on Browser Use)                |
 | `jsutils.py`      | Utility functions to extract text and attributes from the DOM           |
 | `start_chrome.py` | Script to launch a Chrome instance with CDP enabled                     |
-
+| `webui.py` | MCP Client， Gradio App                    |
 ---
 
 ### Run MCP Inspector (For Debugging)
@@ -122,5 +125,19 @@ mcp dev mcpserver.py
 
 This will launch an interactive MCP tool inspector.
 
-### Future Goals
-- Develop a webui that can read the user's resume in pdf version and convert to json, enable editing and saving the template resume.
+
+### Reference
+This project adapt the MCP Client from the tutorial below
+
+https://www.gradio.app/guides/building-an-mcp-client-with-gradio#part-2-building-the-mcp-client-with-gradio
+
+
+### Misc 
+Update on 2025/05/10:
+
+I cannot start this project from default user data which is usually in `C:\Users\<YourUsername>\AppData\Local\Google\Chrome\User Data\`
+ because Chrome does not support this anymore for security reasons. 
+
+ Further information can be found in `https://developer.chrome.com/blog/remote-debugging-port`
+
+ However, I have updated the script. Now, `start_chrome.py` start from the customized user data directory in `ChromeUserData`. Users can choose to reload their data after launching Chrome by `start_chrome.py` and login to certain job website and store authorizations so that later the AI agent can fill resumes.
